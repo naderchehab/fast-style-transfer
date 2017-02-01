@@ -124,6 +124,8 @@ def from_pipe(opts):
 
 # get img_shape
 def ffwd(data_in, paths_out, checkpoint_dir, device_t='/gpu:0', batch_size=4):
+    paths_out = list(paths_out)
+    data_in = list(data_in)
     assert len(paths_out) > 0
     is_paths = type(data_in[0]) == str
     if is_paths:
@@ -136,7 +138,7 @@ def ffwd(data_in, paths_out, checkpoint_dir, device_t='/gpu:0', batch_size=4):
     g = tf.Graph()
     batch_size = min(len(paths_out), batch_size)
     curr_num = 0
-    soft_config = tf.ConfigProto(allow_soft_placement=True)
+    soft_config = tf.ConfigProto(allow_soft_placement=True,log_device_placement=True)
     soft_config.gpu_options.allow_growth = True
     with g.as_default(), g.device(device_t), \
             tf.Session(config=soft_config) as sess:

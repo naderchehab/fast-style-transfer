@@ -1,0 +1,15 @@
+python evaluate.py --checkpoint my_attempts/models/la_muse.ckpt --in-path my_attempts/in/1.jpg --out-path my_attempts/out/la_muse_1.jpg --device /gpu:0 --batch-size 10
+
+python transform_video.py --in-path my_attempts/in/montreal_super_short.mp4 --checkpoint my_attempts/models/rain_princess.ckpt --out-path my_attempts/out/montreal_la_muse.mp4
+
+python transform_video.py --in-path my_attempts/in/montreal_smaller_30.mp4 --checkpoint my_attempts/models/la_muse.ckpt --out-path my_attempts/out/montreal_la_muse.mp4 --device /gpu:0
+
+python transform_video.py --in-path my_attempts/in/montreal_smaller_short.mp4 --checkpoint my_attempts/models/rain_princess.ckpt --out-path my_attempts/out/montreal_short_rain_princess.mp4 --device /gpu:0
+
+python transform_video.py --in-path my_attempts/in/montreal_smaller_short.mp4 --checkpoint my_attempts/models/wave.ckpt --out-path my_attempts/out/montreal_short_wave.mp4 --device /gpu:0
+
+
+conda create --name style-transfer-gpu python=3.5
+activate style-transfer-gpu
+conda install jupyter scipy pillow
+pip install tensorflow-gpu
